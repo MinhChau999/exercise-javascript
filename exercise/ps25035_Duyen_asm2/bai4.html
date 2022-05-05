@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+  
+  </head>
+  <body>
+    
+      <div class="container col-5 shadow-sm py-2 mt-3">
+          <h3 class="text-center bg-secondary py-2 display-5 text-light" >Đăng ký thành diên</h3>
+          <form id="form" >
+            <div class="form-group">
+                <label for="">Mã sinh diên</label>
+                <input type="text" name="" id="masv" class="form-control">
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Tên sinh diên</label>
+                <input type="text" name="" id="tensv" class="form-control">
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" name="" id="email" class="form-control">
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+              <fieldset>
+                <legend>Sở thích:</legend>
+                <input type="checkbox" name="check">Thể thao
+                <input type="checkbox" name="check" checked>Du lịch
+                <input type="checkbox" name="check">Âm nhạc
+                <input type="checkbox" name="check">Đọc sách
+                <input type="checkbox" name="check">Khác
+            </fieldset>
+            </div>
+            <div class="form-group">
+              <label>Quốc tịch</label>
+            <input list="browsers">
+            <datalist id="browsers">
+                <option value="Việt Nam">
+                <option value="USD">
+                <option value="UK">
+            </datalist>
+            </div>
+            <div class="form-group">
+              <div class="text">Ghi chú: </div>
+              <textarea cols="40" rows="10"></textarea>
+            </div>
+            <button id="btn" class="btn-primary btn mx-auto d-block col-3">Đăng ký</button>
+          </form>
+          
+      </div>
+      <script src="./js/bai4.js"></script>
+      <script>
+        Validator({
+          form: '#form',
+          rules: [
+            Validator.isRequired('#masv'),
+            Validator.isEmail('#email'),
+            Validator.isName('#tensv'),
+          ]
+        });
+      </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

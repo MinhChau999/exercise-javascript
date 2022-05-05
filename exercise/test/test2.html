@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h4>1040EZ Form Tax Calculation</h4>
+        <p>Name: <input type="text"></p>
+        <p>Filing Status:
+            <input type="radio" value="1" name="status" checked>Single
+            <input type="radio" value="2" name="status">Married
+        </p>
+        <p>Total income: <input type="number" id="income"></p>
+        <p><input type="checkbox" id="check">Check this box if someone claims you on their return</p>
+        <p>Deduction: <input id="deduction"></p>
+        <p>Taxable income: <input id="taxable"></p>
+        <p>Tax: <input id="tax"></p>
+        <button onclick="submit()">Compute Tax</button>
+    </div>
+    <script src="./test2.js"></script>
+</body>
+<script>
+    function submit() {
+        var status = document.querySelector('input[name="status"]:checked').value;
+        var income = document.getElementById("income").value;
+        var check = document.getElementById("check").checked;
+        var deduction = document.getElementById("deduction").value;
+
+        deduction = 0;
+        if (status == 1) {
+            if (check) {
+                deduction = 3900;
+            } else {
+                deduction = 6550;
+            }
+        } else {
+            if (check) {
+                deduction = 6550;
+            } else {
+                deduction = 11800;
+            }
+        }
+        document.getElementById("deduction").value = "$" + deduction.toFixed(2);
+        console.log(deduction);
+
+        let taxableIncome = 0;
+        taxableIncome = income - deduction;
+        document.getElementById("taxable").value = "$" + taxableIncome.toFixed(2);
+
+        let tax = 0;
+        tax = document.getElementById("tax").value;
+        if (status == 1) {
+            if (taxableIncome > 0 && taxableIncome < 22100) {
+                tax = (15 / 100) * (taxableIncome);
+            } else if (taxableIncome > 22100 && taxableIncome < 53500) {
+                tax = 3315 + (28 / 100) * (taxableIncome - 22100);
+            } else if (taxableIncome > 53500 && taxableIncome < 115000) {
+                tax = 12107 + (31 / 100) * (taxableIncome - 53500);
+            } else if (taxableIncome > 11500 && taxableIncome < 250000) {
+                tax = 31172 + (36 / 100) * (taxableIncome - 11500);
+            } else {
+                tax = 79772 + (39, 6 / 100) * (taxableIncome - 250000);
+            }
+        }
+        if (status == 2) {
+            if (taxableIncome > 0 && taxableIncome < 36900) {
+                tax = (15 / 100) * (taxableIncome);
+            } else if (taxableIncome > 36900 && taxableIncome < 89150) {
+                tax = 5535 + (28 / 100) * (taxableIncome - 36900);
+            } else if (taxableIncome > 89150 && taxableIncome < 140000) {
+                tax = 20165 + (31 / 100) * (taxableIncome - 89150);
+            } else if (taxableIncome > 140000 && taxableIncome < 250000) {
+                tax = 35928.5 + (36 / 100) * (taxableIncome - 140000);
+            } else {
+                tax = 75528.5 + (39, 6 / 100) * (taxableIncome - 250000);
+            }
+        }
+        document.getElementById("tax").value = "$" + tax.toFixed(2);
+    }
+</script>
+
+</html>

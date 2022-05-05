@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bai3.css">
+</head>
+<body>
+    <div class="container">
+        <select id="levelPrice" onchange="changePrice()">
+            <option value="-1">Chọn mức giá</option>
+            <option value="200">Đến 200</option>
+            <option value="400">Đến 400</option>
+            <option value="600">Đến 600</option>
+            <option value="800">Đến 800</option>
+        </select>
+        <table id="table_SP">
+            <tr>
+                <th colspan="2">Hàng hóa</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(0)"></td>
+                <td>iPhone 11</td>
+                <td name="price">700</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(1)"></td>
+                <td>Oppo</td>
+                <td name="price">600</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(2)"></td>
+                <td>Samsung</td>
+                <td name="price">400</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(3)"></td>
+                <td>Nokia</td>
+                <td name="price">300</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(4)"></td>
+                <td>Sony Xperia</td>
+                <td name="price">450</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(5)"></td>
+                <td>Motorola</td>
+                <td name="price">180</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="chon" onclick="chooseCheckbox(6)"></td>
+                <td>bPhone</td>
+                <td name="price">90</td>
+                <td><input value="0" name="amount" disabled onkeyup="payment(this)"></td>
+                <td name="total"></td>
+            </tr>
+            <tr class="tong">
+                <th colspan="4">Tổng</th>
+                <td id="sum"><b>580</b></td>
+            </tr>
+        </table>
+    </div>
+    <script src="./js/bai3.js"></script>
+</body>
+</html>

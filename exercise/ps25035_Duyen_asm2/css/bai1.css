@@ -1,0 +1,81 @@
+.container {
+    height: 550px;
+}
+
+.title {
+    border-bottom: 1px solid #7d7ec1;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.title h3 {
+    text-shadow: 5px 5px 3px #d0d1fa;
+    font-size: 25px;
+    color: #7d7ec1;
+}
+
+.title span {
+    color: #7d7ec1;
+}
+
+.content {
+    border: 1px solid #9494d7;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 5px;
+    width: 40%;
+    height: 550px;
+    background-image: url(../images/2c.png);
+    background-size: cover;
+    margin: 0 auto;
+}
+
+form {
+    text-align: center;
+    border-bottom: 1px solid #7d7ec1;
+    padding: 35px 0;
+}
+
+form input {
+    width: 50%;
+    height: 23px;
+    padding: 3px 10px;
+    margin-left: 8px;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid #9494d7;
+    outline: none;
+}
+.enabled{
+    background: #7d7ec1 !important;
+    font-weight: bold;
+    color: #fff;
+}
+.disabled{
+    background: #9899cb;
+    font-weight: bold;
+    color: #dddef8;
+}
+button {
+    height: 35px;
+    width: 33%;
+    border-radius: 3px;
+    border: none;
+    background-color: #7d7ec1;
+    color: #fff;
+}
+
+#pt {
+    font-size: 20px;
+    color: gray;
+}
+
+#kq {
+    color: gray;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.hihi {
+    padding: 50px 60px;
+}
