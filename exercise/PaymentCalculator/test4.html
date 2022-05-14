@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h4>
+            <p>Monthly Payment Calculator</p>
+        </h4>
+        <p>Enter loan amount: <input type="number" id="loan" value="300000"></p>
+        <p>Select rate:
+            <select name="" id="rate">
+                <option value="-1">select rate</option>
+                <option value="3">3%</option>
+                <option value="3.5">3.5%</option>
+                <option value="4" selected>4%</option>
+                <option value="4.5">4.5%</option>
+                <option value="5">5%</option>
+                <option value="5.5">5.5%</option>
+                <option value="6">6%</option>
+            </select>
+        </p>
+        <p>Select term: <br>
+            <input type="radio" name="term" value="10">10 year <br>
+            <input type="radio" name="term" value="15">15 year <br>
+            <input type="radio" name="term" value="30" checked>30 year <br>
+        </p>
+        <p><input type="checkbox" id="add" checked>Add 0.5% to rate for loan more than $750,000</p>
+        <p><input type="checkbox" id="veteran">Veteran? rate reduces 0.5%</p>
+        <p>Enter Affordable Payment: <input type="text" id="affordable"></p>
+        <p>Monthly payment: <input id="payment"></input></p>
+        <button onclick="submit()">Compute Payment</button>
+        <!-- <script src="./test.js"></script> -->
+        <!-- <input type="submit" onclick="submit()"> -->
+    </div>
+</body>
+<script>
+    function submit() {
+        let loan = document.getElementById('loan').value;
+        let rate = document.getElementById('rate').value;
+        if (rate.value == -1) {
+            rate = 0;
+        }
+        rate = rate / 100;
+        let term = document.querySelector('input[name="term"]:checked').value;
+        let add = document.getElementById('add').checked;
+        let veteran = document.getElementById('veteran').checked;
+        let affordable = document.getElementById('affordable').value;
+        if (add) {
+            if (loan > 750000) {
+                rate += 0.005;
+            }
+        }
+        if (veteran) {
+            rate -= 0.005;
+        }
+        let payment = 0;
+        // payment = (loan * rate / 12) * (1 - Math.pow(1 + rate / 12, -term * 12)) / (1 - Math.pow(1 + rate / 12, -term * 12));
+        payment = (loan * rate / 12) / (1 - Math.pow(1 + rate / 12, -term * 12));
+        document.getElementById('payment').value = '$' + payment.toFixed(2);
+
+        if (affordable) {
+            if (payment > affordable) {
+                document.getElementById('payment').style.backgroundColor = 'lightcoral';
+            } else {
+                document.getElementById('payment').style.backgroundColor = 'lightgreen';
+            } 
+        }
+    }
+</script>
+
+</html>

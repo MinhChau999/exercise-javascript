@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h4>
+            <p>Vehicle Loan Amortization</p>
+        </h4>
+        <p>Enter loan mount: <input type="number" class="loan-amount" value="30000"></p>
+        <p>Enter interest rate: <input type="number" class="interest-rate" value="0.059"></p>
+        <p>Enter term in month: <input type="number" class="term-in-month" value="12"></p>
+        <p><button onclick="submit()">Show table</button></p>
+    </div>
+</body>
+<script>
+    function submit() {
+        // remove table if exist
+        if(document.getElementById('table')) {
+            document.getElementById('table').remove();
+        }
+        // create table
+        //body reference 
+        let body = document.getElementsByTagName("body")[0];
+        // create elements <table>, a <thead> and create values for <th>
+        let tbl = document.createElement("table");
+        tbl.setAttribute("id", "table");
+        tbl.style.width = '50%';
+        tbl.setAttribute('border', '1');
+            // let tblThead = document.createElement("thead");
+            // let th1 = document.createElement("th");
+            // let th2 = document.createElement("th");
+            // let th3 = document.createElement("th");
+            // let th4 = document.createElement("th");
+            // let th5 = document.createElement("th");
+            // th1.innerHTML = 'Payment';
+            // th2.innerHTML = 'Monthly Payment';
+            // th3.innerHTML = 'Amount to Interest';
+            // th4.innerHTML = 'Amount to Principal';
+            // th5.innerHTML = 'Remaining Balance';
+            // tblThead.appendChild(th1);
+            // tblThead.appendChild(th2);
+            // tblThead.appendChild(th3);
+            // tblThead.appendChild(th4);
+            // tblThead.appendChild(th5);
+            // tbl.appendChild(tblThead);
+            // body.appendChild(tbl);
+        tbl.innerHTML = `<thead>
+                            <tr>
+                                <th>Payment</th>
+                                <th>Monthly Payment</th>
+                                <th>Amount to Interest</th>
+                                <th>Amount to Principal</th>
+                                <th>Remaining Balance</th>
+                            </tr>
+                        </thead>`;
+        // create elements <tbody> and <tr>
+        let tblBody = document.createElement("tbody");
+        // get values
+        let loanAmount = document.querySelector('.loan-amount').value;
+        let termInMonth = document.querySelector('.term-in-month').value;
+        let interestRate = document.querySelector('.interest-rate').value / termInMonth;
+        let monthlyPayment = loanAmount * (interestRate / (1 - Math.pow((1 + interestRate), -termInMonth)));
+        let remainingBalance = loanAmount;
+        let totalInterest = 0;
+        for (let i = 0; i < termInMonth; i++) {
+            let tr = document.createElement("tr");
+            // set background color for odd and even
+            if(i % 2 == 0) {
+                tr.style.backgroundColor = '#FFC0CB'
+            } else {
+                tr.style.backgroundColor = 'aqua';
+            }
+            // row 1
+            let td1 = document.createElement("td");
+            td1.innerHTML =(i + 1);
+            tr.appendChild(td1);
+            // row 2
+            let td2 = document.createElement("td");
+            td2.innerHTML ='$' + Math.round(monthlyPayment*100)/100;
+            tr.appendChild(td2);
+            // row 3
+            let td3 = document.createElement("td");
+            let interest = remainingBalance * interestRate;
+            td3.innerHTML ='$' + Math.round(interest*100)/100;
+            tr.appendChild(td3);
+            // row 4
+            let td4 = document.createElement("td");
+            let principal = monthlyPayment - interest;
+            td4.innerHTML ='$' + Math.round(principal*100)/100;
+            tr.appendChild(td4);
+            // row 5
+            let td5 = document.createElement("td");
+            remainingBalance = remainingBalance - principal;
+            td5.innerHTML ='$' + Math.round(remainingBalance*100)/100;
+            tr.appendChild(td5);
+            tblBody.appendChild(tr);
+            totalInterest += interest;
+        }
+        tbl.appendChild(tblBody);
+        body.appendChild(tbl);
+        // Payment Every Month
+        if (document.getElementById('payment-every-month')) {
+            document.getElementById('payment-every-month').remove();
+        }
+        let payment = document.createElement("p");
+        payment.setAttribute("id", "payment-every-month");
+        payment.innerHTML = 'Payment Every Month: $' + Math.round(monthlyPayment*100)/100;
+        body.appendChild(payment);
+        // Total Interest
+        if (document.getElementById('total-interest')) {
+            document.getElementById('total-interest').remove();
+        }
+        let totalInter=document.createElement("p");
+        totalInter.setAttribute("id", "total-interest");
+        totalInter.innerHTML = 'Total Interest: $' + Math.round(totalInterest*100)/100;
+        body.appendChild(totalInter);
+        // Total Payment
+        if (document.getElementById('total-payment')) {
+            document.getElementById('total-payment').remove();
+        }
+        let totalPayment = document.createElement("p");
+        totalPayment.setAttribute("id", "total-payment");
+        totalPayment.innerHTML = 'Total Payment: $' + Math.round((monthlyPayment * termInMonth)*100)/100;
+        body.appendChild(totalPayment);
+    }
+</script>
+</html>

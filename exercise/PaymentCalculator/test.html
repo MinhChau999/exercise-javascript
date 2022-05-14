@@ -13,13 +13,13 @@
         <h4>
             <p>Monthly Payment Calculator</p>
         </h4>
-        <p>Enter loan amount: <input type="number" id="loan"></p>
-        <p>Select today's annual rate:
+        <p>Enter loan amount: <input type="number" id="loan" value="300000"></p>
+        <p>Select rate:
             <select name="" id="rate">
                 <option value="-1">select rate</option>
                 <option value="3">3%</option>
                 <option value="3.5">3.5%</option>
-                <option value="4">4%</option>
+                <option value="4" selected>4%</option>
                 <option value="4.5">4.5%</option>
                 <option value="5">5%</option>
                 <option value="5.5">5.5%</option>
@@ -29,11 +29,11 @@
         <p>Select term: <br>
             <input type="radio" name="term" value="10">10 year <br>
             <input type="radio" name="term" value="15">15 year <br>
-            <input type="radio" name="term" value="30">30 year <br>
+            <input type="radio" name="term" value="30" checked>30 year <br>
         </p>
-        <p><input type="checkbox" id="add">Add 0.5% to rate for loan more than $750,000</p>
+        <p><input type="checkbox" id="add" checked>Add 0.5% to rate for loan more than $750,000</p>
         <p><input type="checkbox" id="veteran">Veteran? rate reduces 0.5%</p>
-        <p>Monthly payment: <span id="payment"></span></p>
+        <p>Monthly payment: <input id="payment"></input></p>
         <button onclick="submit()">Compute Payment</button>
         <!-- <script src="./test.js"></script> -->
         <!-- <input type="submit" onclick="submit()"> -->
@@ -42,7 +42,11 @@
 <script>
     function submit() {
         let loan = document.getElementById('loan').value;
-        let rate = document.getElementById('rate').value / 100;
+        let rate = document.getElementById('rate').value;
+        if (rate.value == -1) {
+            rate = 0;
+        }
+        rate = rate / 100;
         let term = document.querySelector('input[name="term"]:checked').value;
         let add = document.getElementById('add').checked;
         let veteran = document.getElementById('veteran').checked;
@@ -57,7 +61,8 @@
         let payment = 0;
         // payment = (loan * rate / 12) * (1 - Math.pow(1 + rate / 12, -term * 12)) / (1 - Math.pow(1 + rate / 12, -term * 12));
         payment = (loan * rate / 12) / (1 - Math.pow(1 + rate / 12, -term * 12));
-        document.getElementById('payment').innerHTML = payment.toFixed(2);
+        document.getElementById('payment').value = '$' + payment.toFixed(2);
+
     }
 </script>
 
